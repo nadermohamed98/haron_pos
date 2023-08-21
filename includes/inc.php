@@ -23,7 +23,7 @@ $databaseuser="root";
 $databasepass="";
 $databasename="pos";
 
-if ("localhost:8081" == $_SERVER['HTTP_HOST'] || true) {
+if ("localhost:8080" == $_SERVER['HTTP_HOST']) {
 
     $databaseuser = "root";
     $databasepass = "";
@@ -84,6 +84,7 @@ if ($num > 0) {
     while ($row_login = mysqli_fetch_array($result_login)) {
         $user_id = $row_login['id'];
         $user_branch_id = $row_login['branch_id'];
+        $user_branch_id_exploded = explode(',',$row_login['branch_id']);
         $user_name = $row_login['name'];
         $user_username = $row_login['username'];
         $user_password = $row_login['password'];
@@ -132,6 +133,7 @@ if ($num > 0) {
         $user_edit_item = $row_login['edit_item'];
         $user_del_item = $row_login['del_item'];
         $user_status = $row_login['status'];
+        $user_AllReports = $row_login['AllReports'];
     }
 } else {
     $login = 0;
@@ -1117,7 +1119,7 @@ function get_order_supply_inv_data_by_id
     }
     if ($branch_id == "" or $branch_id == null) {
     } else {
-        $add_sql .= "branch_id='$branch_id' and ";
+        $add_sql .= "branch_id IN ($branch_id) and ";
     }
     if ($_GET['region_id'] != "null" and $_GET['region_id'] != null and $_GET['region_id'] != '') {
 //        $regions=explode(',',stripslashes($_GET['region_id']));

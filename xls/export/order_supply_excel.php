@@ -39,7 +39,8 @@ $branch = array();
 $branch=implode(',',$_GET['branch_id']); 
 $UerID=stripslashes($_GET['UerID']);
 if($inv=="" or $inv==null){}else{$add_sql.="inv_id='$inv' and ";}
-if($user_branch_id && $user_branch_id > 0){$add_sql.="branch_id='$user_branch_id' and ";}else{
+if($user_branch_id && $user_branch_id > 0){$add_sql.="branch_id IN ($user_branch_id) and ";}
+else{
     if($branch=="" or $branch==null){}else{$add_sql.="branch_id IN ($branch) and ";}
 }
 

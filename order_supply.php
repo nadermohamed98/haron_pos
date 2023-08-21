@@ -574,7 +574,7 @@ SELECT item_status,(CASE when order_supply_type=2 then  Quantity/subqty else Qua
                                             if($user_branch_id=="0"){ ?>
                                                     <option value=""> <?php echo"$the_branch_name_lang"; ?></option>
                                             <?php }else{
-                                                $user_perme="where id='$user_branch_id'";
+                                                $user_perme="where id IN ($user_branch_id)";
                                             }
                                             $ProductsName = mysqli_query($con, "SELECT * FROM ".$prefix."_branch $user_perme order by id ASC");
                                             $num_item = mysqli_num_rows($ProductsName);
